@@ -1,3 +1,12 @@
+## Usage :
+
+Requirements
+
+Configs file : 
+```
+python script.py --configs_file ./my_configs --valid_configs_file ./my_valid_configs --max_valid_configs 20
+```
+
 ## Todo
 1. [ ] Add scraper to get configs from subs links 
 2. [ ] Preprocessing pure configs 
