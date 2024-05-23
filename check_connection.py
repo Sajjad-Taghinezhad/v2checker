@@ -21,5 +21,5 @@ def https(url, proxy_port="", timeout=5):  # Added timeout parameter
     response.raise_for_status()  # Raise an exception for non-200 status codes
     return True
   except requests.exceptions.RequestException as e:
-    print(f"Error sending request: {e}")  # Print error details for debugging
+    # print(f"Error sending request: {e}")  # Print error details for debugging
     return False
