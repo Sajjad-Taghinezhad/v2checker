@@ -53,7 +53,7 @@ def create_config_file(filename, content):
     try:
         with open(filename, 'x') as f:  # 'x' mode for exclusive creation
             f.write(content)
-        logging.info(f"Successfully created and wrote to file: {filename}")
+        # logging.info(f"Successfully created and wrote to file: {filename}")
     except FileExistsError:
         logging.warning(f"File '{filename}' already exists.")
     except Exception as e:
@@ -61,7 +61,12 @@ def create_config_file(filename, content):
 
 def check_config(config):
     global valid_configs, failed_configs
-
+    
+    # Check if stop flag is set to terminate early
+    if stop_flag.is_set():
+        logging.info("Stop flag set. Terminating early.")
+        return
+    
     with counter_lock:
         if valid_configs >= max_valid_configs:
             logging.info(f"Reached the limit of {max_valid_configs} valid configs. Stopping further processing.")
@@ -76,7 +81,7 @@ def check_config(config):
         create_config_file(config_filename, config_content)
 
         proxy_process = proxy.start_v2ray(config_filename)
-        logging.info(f"Proxy started for config file: {config_filename}")
+        # logging.info(f"Proxy started for config file: {config_filename}")
 
         time.sleep(5)
         if check_connection.https("https://google.com/generate_204", port):
@@ -94,10 +99,7 @@ def check_config(config):
         proxy.stop_v2ray(proxy_process)
         os.remove(config_filename)
 
-        # Check if stop flag is set to terminate early
-        if stop_flag.is_set():
-            logging.info("Stop flag set. Terminating early.")
-            return
+        
 
     except Exception as e:
         logging.error(f"Error processing config: {e}")
