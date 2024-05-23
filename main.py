@@ -4,7 +4,7 @@ import random_free_port
 import proxy
 import time
 import check_connection
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 import logging
 import signal
