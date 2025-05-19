@@ -14,7 +14,7 @@ import argparse
 # Default values
 DEFAULT_CONFIGS_FILE = "./configs"
 DEFAULT_VALID_CONFIGS_FILE = "./sajx.sub"
-DEFAULT_MAX_VALID_CONFIGS = 10
+DEFAULT_MAX_VALID_CONFIGS = 10000
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Check and validate V2Ray configurations.")
